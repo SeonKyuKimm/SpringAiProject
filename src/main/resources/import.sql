@@ -1,0 +1,3 @@
+INSERT INTO article (title, content, created_at, updated_at) VALUES ('수뿍이의 카자흐순이', '안녕하세요 오늘은 카자흐스탄 여행에 대해 간략히 알아볼게요!' || CHAR(10) ||'중앙아시아의 대표적인 아름다운 자연을 가지고 있는 나라인데요' || CHAR(10)|| '수도는 아스타나입니다', NOW(), NOW() );
+INSERT INTO article (title, content, created_at, updated_at) VALUES ('제목 2', '내용 2', NOW(), NOW() );
+INSERT INTO article (title, content, created_at, updated_at) VALUES ('제목 3', '내용 3', NOW(), NOW() );
