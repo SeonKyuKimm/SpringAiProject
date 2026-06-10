@@ -44,20 +44,25 @@ public class Article {
 	@Column(name="updated_at")
 	private LocalDateTime updatedA;
 	
+	@Column(name ="imageUrl")
+	private String imageUrl;
+	
 	@Builder
-	public Article(String title, String content) {
+	public Article(String title, String content, String imageUrl) {
 		
 		this.title = title;
 		this.content = content;
+		this.imageUrl = imageUrl;
 	}
 	
 	protected Article () {
 		
 	}
 	
-	public void update(String title , String content) {
+	public void update(String title , String content, String imageUrl) {
 		this.title = title;
 		this.content = content;
+		this.imageUrl = imageUrl;
 	}
 	
 

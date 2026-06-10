@@ -8,9 +8,11 @@ public class ArticleResponse {
 	
 	private final String content;
 	private final String title;
+	private final String imageUrl;
 	
 	public ArticleResponse(Article article) {
 		this.content = article.getContent();
 		this.title = article.getTitle();
+		this.imageUrl = article.getImageUrl();
 	}
 }

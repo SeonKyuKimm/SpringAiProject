@@ -1,3 +1,66 @@
+window.addEventListener('DOMContentLoaded', () => {
+	const imageUrl = document.getElementById('image-url')?.value;
+	
+	if(imageUrl) {
+		displayImagePreview(imageUrl);
+	}
+});
+
+const imageUpload = document.getElementById('image-upload');
+
+if(imageUpload) {
+	imageUpload.addEventListener('change' ,async(e) => {
+		const file = e.target.files[0];
+		
+		if(!file) return;
+		
+		if(!file.type.startsWith('image/')){
+			alert('이미지 파일만 업로드 가능합니다.');
+			return;
+		}
+		
+		const formData = new FormData();
+		formData.append('file', file);
+		
+		fetch('/api/upload', {
+			method : 'POST',
+			body :formData 
+		}).then((resp) => {
+			
+			if(!resp.ok) {
+				alert('이미지 업로드에 실패하였습니다');
+				throw new Error();
+			}
+			
+			return resp.json();
+
+		}).then((data) => {
+			document.getElementById('image-url').value = data.imageUrl;
+			displayImagePreview(data.imageUrl);
+		}).catch((e) => console.error(e))
+	});
+}
+
+function displayImagePreview(imageUrl) {
+	const prev = document.getElementById('image-preview');
+	const prevImg = document.getElementById('preview-img');
+	
+	if(prev && prevImg && imageUrl) {
+		prevImg.src = imageUrl;
+		prev.style.display = 'block';
+	}
+}
+
+const removeImageBtn = document.getElementById('remove-image-btn');
+if(removeImageBtn) {
+	removeImageBtn.addEventListener('click', () => {
+		document.getElementById('image-url').value ='';
+		document.getElementById('image-upload').value ='';
+		document.getElementById('image-preview').style.display = 'none';
+	});
+}
+
+
 const delBtn = document.getElementById("delete-btn");
 
 if(delBtn) {
@@ -48,7 +111,8 @@ if(createBtn){
 				},
 				body : JSON.stringify({
 					title : document.getElementById("title").value,
-					content : document.getElementById("content").value
+					content : document.getElementById("content").value,
+					imageUrl : document.getElementById("image-url").value
 				}),
 			}).then( () => {
 				alert("등록되었습니다");
@@ -146,3 +210,5 @@ if(suggestionContent) {
 		}
 	});
 }
+
+
