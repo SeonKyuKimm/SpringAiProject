@@ -18,10 +18,13 @@ import me.seonkyukim.springbootdeveloper.domain.Article;
 import me.seonkyukim.springbootdeveloper.dto.AddArticleRequest;
 import me.seonkyukim.springbootdeveloper.dto.ArticleListViewResponse;
 import me.seonkyukim.springbootdeveloper.dto.ArticleResponse;
+import me.seonkyukim.springbootdeveloper.dto.GeneratorThumbnailRequest;
+import me.seonkyukim.springbootdeveloper.dto.GeneratorThumbnailResponse;
 import me.seonkyukim.springbootdeveloper.dto.UpdateArticleRequest;
 import me.seonkyukim.springbootdeveloper.dto.WritingSuggestionRequest;
 import me.seonkyukim.springbootdeveloper.dto.WritingSuggestionsResponse;
 import me.seonkyukim.springbootdeveloper.service.BlogService;
+import me.seonkyukim.springbootdeveloper.service.ThumbnailGeneratorService;
 import me.seonkyukim.springbootdeveloper.service.WritingAssistantService;
 
 @RequiredArgsConstructor
@@ -30,6 +33,7 @@ public class BlogApiController {
 
 	private final BlogService blogService;
 	private final WritingAssistantService writingAssistantService;
+	private final ThumbnailGeneratorService thumbnailGeneratorService;
 	
 	@PostMapping("/api/articles")
 	public ResponseEntity<Article> addArticle(@RequestBody AddArticleRequest req) {
@@ -81,5 +85,12 @@ public class BlogApiController {
 		
 		return ResponseEntity.ok()
 							 .body(resp);
+	}
+	
+	@PostMapping("/api/ai-thumbnails")
+	public ResponseEntity<GeneratorThumbnailResponse> thumbnailGenerator(@RequestBody GeneratorThumbnailRequest req) {
+		GeneratorThumbnailResponse resp = thumbnailGeneratorService.generateThumbnail(req);
+		
+		return ResponseEntity.ok(resp);
 	}
 }

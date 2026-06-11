@@ -20,8 +20,7 @@ public class WritingAssistantService {
 					new BeanOutputConverter<>(WritingSuggestionsResponse.class);
 	
 	public WritingAssistantService ( ChatClient.Builder chatClientBuilder,
-								   @Value("classpath:prompts/writing-assistant.st") Resource promptResource
-								 ) {
+								     @Value("classpath:prompts/writing-assistant.st") Resource promptResource  ) {
 									 this.chatClient = chatClientBuilder.build();
 									 this.template = new PromptTemplate(promptResource);
 	}

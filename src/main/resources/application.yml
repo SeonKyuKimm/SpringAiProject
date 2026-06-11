@@ -11,6 +11,9 @@ spring:
   ai:
     openai:
       api-key: ${OPENAI_API_KEY}
+      image:
+        options:
+          model: gpt-image-1
   servlet:
     multipart:
       max-file-size: 20MB

@@ -29,9 +29,21 @@
 						
 						<div class="input-group mb-2">
 							<input type="file" class="form-control" id="image-upload" accept="image/*">
+							<button type="button" id="ai-thumbnail-btn" class="btn btn-outline-secondary">AI 썸네일 생성</button>
 						</div>
 						
 						<input type="hidden" id="image-url" th:value="${article.imageUrl}">
+						
+						<div id="ai-thumbnail-loading" class="mt-2" style="display : none;">
+							<div class="spinner-border spinner-border-sm text-primary" role="status">
+								<span class="sr-only">
+									로딩중..(스님이 다니는 중학교라는 뜻)
+								</span>
+							</div>
+							
+							<span class="ml-2">AI가 썸네일 생성중입니다.</span>
+							
+						</div>
 						
 						<div id="image-preview" class="mt-3" style="display : none;">
 							<img id="preview-img" 
@@ -107,4 +119,5 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	
 	<script src="/js/article.js"></script>
+	<script src="/js/forAiThumbnail.js"></script>
 </body>
