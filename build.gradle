@@ -39,6 +39,12 @@ dependencies {
 	   implementation 'org.springframework.boot:spring-boot-starter-security'
 	   implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	  // testimplementation 'org.springframework.security:spring-security-test'
+	  
+	  // JWT 웹토큰관련
+	  testAnnotationProcessor 'org.projectlombok:lombok'
+	  testImplementation 'org.projectlombok:lombok'
+	  implementation 'io.jsonwebtoken:jjwt:0.9.1' // JAVA JWT 라이브러리
+	  implementation 'javax.xml.bind:jaxb-api:2.3.1' // XML 과 Java 객체간 매핑 자동화
 }
 
 tasks.named('test') {

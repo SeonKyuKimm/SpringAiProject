@@ -21,3 +21,6 @@ spring:
     multipart:
       max-file-size: 20MB
       max-request-size: 20MB
+  jwt: 
+    issuer: ajufresh@gmail.com    # 이슈 발급자
+    secret_key: study-springboot  # 비밀키

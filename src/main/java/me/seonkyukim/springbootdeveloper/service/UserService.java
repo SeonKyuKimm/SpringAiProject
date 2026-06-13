@@ -23,4 +23,11 @@ public class UserService {
 									   .password(passwordEncoder.encode(dto.getPassword()))
 									   .build()).getId();
 	}
+	
+	// JWT, 전달받은 user ID 로 user 를 검색, 전달하는 조회성 메서드
+	public User findById(Long userId) {
+		
+		return userRepository.findById(userId)
+				             .orElseThrow( () -> new IllegalArgumentException("Unexpected user"));
+	}
 }
